@@ -1,0 +1,131 @@
+// Дизайн-токены проекта.
+// Адаптированы из DESIGN.md: сохранена структура палитры, типографической
+// шкалы, отступов, радиусов и теней исходной дизайн-системы, но названия и
+// значения переработаны под нейтральный бренд digital-студии.
+
+:root {
+  // ===== Цвет: акцент =====
+  --color-accent: #00ed64;
+  --color-accent-deep: #00b545;
+  --color-accent-pressed: #008c34;
+  --color-accent-soft: #c3f0d2;
+  --color-on-accent: #00232f;
+
+  // ===== Цвет: тёмные поверхности (hero, cta, footer, header) =====
+  --color-dark-deep: #00232f;
+  --color-dark: #073a4a;
+  --color-dark-mid: #0d5a63;
+
+  // ===== Цвет: светлые поверхности =====
+  --color-canvas: #ffffff;
+  --color-surface: #f8fafa;
+  --color-surface-soft: #f2f5f5;
+  --color-surface-feature: #e3fcef;
+
+  // ===== Границы =====
+  --color-hairline: #e2e6e7;
+  --color-hairline-soft: #edf0f0;
+  --color-hairline-strong: #c3ccce;
+  --color-hairline-dark: #1f424f;
+
+  // ===== Текст =====
+  --color-ink: #00232f;
+  --color-charcoal: #1c3138;
+  --color-slate: #3d4f53;
+  --color-steel: #5c6e72;
+  --color-stone: #7c8b8e;
+  --color-muted: #a8b4b6;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: #a9c1c5;
+
+  // ===== Шрифты =====
+  // Euclid Circular A недоступен как свободный веб-шрифт — используем
+  // геометричную гарнитуру Manrope, близкую по духу и пропорциям, сохраняя
+  // общее имя токена для единообразия с DESIGN.md.
+  --font-primary: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  // ===== Типографическая шкала (адаптивная через clamp) =====
+  --fs-hero-display: clamp(2.25rem, 1.5rem + 3.2vw, 4.5rem);
+  --fs-display-lg: clamp(2rem, 1.4rem + 2.4vw, 3.5rem);
+  --fs-heading-1: clamp(1.75rem, 1.3rem + 1.8vw, 3rem);
+  --fs-heading-2: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  --fs-heading-3: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);
+  --fs-heading-4: 1.375rem;
+  --fs-heading-5: 1.125rem;
+  --fs-subtitle: 1.125rem;
+  --fs-body-md: 1rem;
+  --fs-body-sm: 0.875rem;
+  --fs-caption: 0.8125rem;
+  --fs-micro: 0.75rem;
+  --fs-micro-uppercase: 0.6875rem;
+  --fs-button: 0.875rem;
+  --fs-code: 0.875rem;
+
+  // ===== Радиусы =====
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-xxl: 24px;
+  --radius-full: 9999px;
+
+  // ===== Отступы =====
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+  --space-xxl: 32px;
+  --space-xxxl: 40px;
+  --space-section-sm: 48px;
+  --space-section: 64px;
+  --space-section-lg: 96px;
+  --space-hero: 120px;
+
+  // Вертикальные отступы секций заданы фиксированными значениями (не clamp,
+  // как типографика) — сознательно переопределяем их ниже для узких экранов
+  // отдельными брейкпоинтами, а не плавной шкалой: так поведение на десктопе
+  // остаётся буквально тем же, что и раньше.
+
+  // ===== Контейнер =====
+  --container-max: 1280px;
+  --container-gutter: 32px;
+
+  // ===== Тени =====
+  --shadow-1: 0 1px 2px 0 rgba(0, 35, 47, 0.04);
+  --shadow-2: 0 4px 12px 0 rgba(0, 35, 47, 0.08);
+  --shadow-3: 0 12px 24px -4px rgba(0, 35, 47, 0.12);
+  --shadow-4: 0 16px 48px -8px rgba(0, 35, 47, 0.16);
+
+  // ===== Прочее =====
+  --header-height: 76px;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-base: 220ms;
+  --duration-slow: 420ms;
+}
+
+// На планшетах вертикальные зазоры между секциями слегка избыточны —
+// уменьшаем их умеренно, сохраняя пропорции.
+@media (max-width: 1023px) {
+  :root {
+    --space-section-sm: 40px;
+    --space-section: 48px;
+    --space-section-lg: 72px;
+    --space-hero: 88px;
+  }
+}
+
+// На телефонах те же отступы, рассчитанные для широких десктопных секций,
+// съедают до трети экрана между блоками — заметно сокращаем их здесь.
+@media (max-width: 767px) {
+  :root {
+    --space-section-sm: 32px;
+    --space-section: 40px;
+    --space-section-lg: 56px;
+    --space-hero: 64px;
+  }
+}

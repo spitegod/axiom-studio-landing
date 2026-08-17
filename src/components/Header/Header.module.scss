@@ -1,0 +1,199 @@
+@use '../../styles/mixins';
+
+.header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  background: rgba(0, 35, 47, 0.36);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard);
+  padding-top: env(safe-area-inset-top);
+}
+
+.header.scrolled {
+  background: rgba(0, 35, 47, 0.82);
+  border-bottom-color: var(--color-hairline-dark);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+
+  @include mixins.from-laptop {
+    gap: var(--space-xl);
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+
+  @include mixins.focus-ring;
+}
+
+.logoImage {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
+.logoText {
+  display: none;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--color-on-dark);
+
+  @include mixins.from-laptop {
+    display: inline;
+  }
+}
+
+// Якорная навигация видна на всех размерах экрана. На узких экранах ей может
+// не хватать места рядом с лого — вместо скрытия за кнопкой меню она получает
+// собственный горизонтальный скролл (min-width: 0 обязателен, иначе
+// flex-элемент не сможет сжаться и скролл не заработает).
+.nav {
+  display: flex;
+  // Список якорей центрируется в свободном пространстве между лого и кнопкой
+  // связи. Центрирование включено только пока список помещается целиком —
+  // при переполнении центрирование overflow-содержимого в flex-контейнере
+  // делает часть контента у левого края недостижимой скроллом (scrollLeft не
+  // уходит в минус), поэтому в .navScrollable выравнивание сбрасывается.
+  justify-content: center;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // Лёгкое затухание у правого края и запасной отступ под него подсказывают,
+  // что список можно прокрутить дальше. Модификатор включается из Header.tsx
+  // только когда список реально не помещается (см. ResizeObserver) — если
+  // применять его всегда, самый этот отступ добавляет лишнюю ширину и nav
+  // начинает чуть-чуть скроллиться даже тогда, когда все пункты уже видны.
+  &.navScrollable {
+    justify-content: flex-start;
+    mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+
+    ul {
+      padding-right: var(--space-lg);
+    }
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    width: max-content;
+
+    @include mixins.from-laptop {
+      gap: var(--space-xxl);
+    }
+  }
+
+  a {
+    display: inline-block;
+    font-size: var(--fs-body-sm);
+    font-weight: 500;
+    color: var(--color-on-dark-muted);
+    padding: var(--space-xs) 0;
+    white-space: nowrap;
+    position: relative;
+    transition: color var(--duration-base) var(--ease-standard);
+
+    @include mixins.focus-ring;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: right var(--duration-base) var(--ease-standard);
+    }
+
+    &:hover {
+      color: var(--color-on-dark);
+
+      &::after {
+        right: 0;
+      }
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+// Приглашение к связи выделено как самостоятельная кнопка, а не текстовая
+// ссылка, и живёт вне скроллящегося списка якорей — иначе на узких экранах
+// её обрезала бы маска горизонтального скролла nav.
+// На узких экранах кнопка вместе с якорями и лого не помещается по ширине —
+// сжимаем её до круглой иконки (как индикатор действия "написать", по
+// аналогии с иконкой отправки в Telegram) и возвращаем подпись только на
+// десктопе, где место не в дефиците.
+.navCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  white-space: nowrap;
+  border-radius: var(--radius-full);
+  transition:
+    background-color var(--duration-base) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+
+  @include mixins.focus-ring;
+
+  &:hover {
+    background: var(--color-accent-deep);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  @include mixins.from-laptop {
+    width: auto;
+    height: auto;
+    gap: var(--space-xs);
+    padding: 8px var(--space-lg);
+  }
+}
+
+.navCtaLabel {
+  display: none;
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+
+  @include mixins.from-laptop {
+    display: inline;
+  }
+}

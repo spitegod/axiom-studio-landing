@@ -1,0 +1,121 @@
+@use '../../styles/mixins';
+
+.section {
+  padding-block: var(--space-section-lg);
+  background: var(--color-canvas);
+}
+
+.header {
+  max-width: 640px;
+  margin-bottom: var(--space-section-sm);
+}
+
+.title {
+  font-size: var(--fs-heading-1);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--space-lg);
+  align-items: stretch;
+  padding-bottom: var(--space-xl);
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  @include mixins.from-laptop {
+    grid-template-columns: 1fr auto 1fr;
+    column-gap: var(--space-xxl);
+    padding-bottom: var(--space-xxl);
+  }
+}
+
+.markerCol {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include mixins.from-laptop {
+    grid-column: 2;
+  }
+}
+
+.marker {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-surface-feature);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.line {
+  width: 2px;
+  flex: 1;
+  margin-top: var(--space-xs);
+  background: var(--color-hairline);
+}
+
+.content {
+  grid-column: 2;
+  grid-row: 1;
+  padding-bottom: var(--space-md);
+
+  @include mixins.from-laptop {
+    grid-column: 3;
+    justify-self: start;
+    text-align: left;
+    padding-bottom: 0;
+  }
+}
+
+.step:nth-child(even) .content {
+  @include mixins.from-laptop {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+    text-align: right;
+  }
+}
+
+.stepIndex {
+  display: inline-block;
+  font-size: var(--fs-heading-3);
+  font-weight: 700;
+  color: var(--color-hairline-strong);
+  margin-bottom: var(--space-xs);
+}
+
+.stepTitle {
+  font-size: var(--fs-heading-4);
+  font-weight: 600;
+  color: var(--color-ink);
+  margin-bottom: var(--space-xs);
+}
+
+.stepDescription {
+  font-size: var(--fs-body-sm);
+  line-height: 1.55;
+  color: var(--color-steel);
+  max-width: 40ch;
+
+  .step:nth-child(even) & {
+    @include mixins.from-laptop {
+      margin-left: auto;
+    }
+  }
+}

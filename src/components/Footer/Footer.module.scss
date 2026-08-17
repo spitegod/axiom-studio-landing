@@ -1,0 +1,91 @@
+@use '../../styles/mixins';
+
+.footer {
+  background: var(--color-dark-deep);
+  color: var(--color-on-dark);
+  padding-top: var(--space-section);
+  padding-bottom: max(var(--space-xl), env(safe-area-inset-bottom));
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxl);
+  padding-bottom: var(--space-xxl);
+  border-bottom: 1px solid var(--color-hairline-dark);
+
+  @include mixins.from-tablet {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 360px;
+}
+
+.logo {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.description {
+  font-size: var(--fs-body-sm);
+  line-height: 1.55;
+  color: var(--color-on-dark-muted);
+}
+
+.navTitle {
+  display: block;
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-on-dark-muted);
+  margin-bottom: var(--space-md);
+}
+
+.nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.nav a {
+  font-size: var(--fs-body-sm);
+  color: var(--color-on-dark);
+  transition: color var(--duration-base) var(--ease-standard);
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--fs-body-sm);
+  color: var(--color-on-dark);
+  transition: color var(--duration-base) var(--ease-standard);
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+.bottom {
+  padding-top: var(--space-xl);
+  font-size: var(--fs-caption);
+  color: var(--color-on-dark-muted);
+}

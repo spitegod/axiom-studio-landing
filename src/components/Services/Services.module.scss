@@ -1,0 +1,104 @@
+@use '../../styles/mixins';
+
+.section {
+  padding-block: var(--space-section-lg);
+  background: var(--color-canvas);
+}
+
+.header {
+  max-width: 640px;
+  margin-bottom: var(--space-xxl);
+
+  @include mixins.from-laptop {
+    margin-bottom: var(--space-section-sm);
+  }
+}
+
+.title {
+  font-size: var(--fs-heading-1);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+// ===== Bento-грид: чередование широких и узких плиток =====
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+
+  @include mixins.from-tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mixins.from-laptop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-xl);
+  background: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-lg);
+  // Плитка использует transform и для hover-приподнятия, и для reveal при
+  // скролле (см. глобальный класс .reveal) — оба случая объединены в одном
+  // списке, иначе один селектор перебивал бы transition другого.
+  transition:
+    opacity var(--duration-slow) var(--ease-standard),
+    transform var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard);
+
+  &:hover {
+    border-color: var(--color-hairline-strong);
+    box-shadow: var(--shadow-2);
+    transform: translateY(-2px);
+  }
+
+  @include mixins.from-laptop {
+    &:nth-child(1),
+    &:nth-child(4),
+    &:nth-child(5) {
+      grid-column: span 2;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+}
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-feature);
+  color: var(--color-accent-deep);
+}
+
+.tileText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.tileTitle {
+  font-size: var(--fs-heading-4);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.tileDescription {
+  font-size: var(--fs-body-sm);
+  line-height: 1.55;
+  color: var(--color-steel);
+  max-width: 42ch;
+}

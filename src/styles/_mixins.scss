@@ -1,0 +1,57 @@
+// Общие миксины и брейкпоинты.
+
+@mixin from-tablet {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin from-laptop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin from-desktop {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin until-tablet {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin until-laptop {
+  @media (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

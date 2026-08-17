@@ -1,0 +1,121 @@
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { TelegramLogo } from '@phosphor-icons/react';
+import { NAV_ITEMS, SECTION_IDS } from '../../data/content';
+import { STUDIO_NAME } from '../../data/contacts';
+import { scrollToSection } from '../../utils/scrollToSection';
+import logoImage from '../../assets/axiom-logo.png';
+import styles from './Header.module.scss';
+
+const CONTACT_HREF = `#${SECTION_IDS.contact}`;
+
+export function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavScrollable, setIsNavScrollable] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+  const scrollNavItems = NAV_ITEMS.filter((item) => item.href !== CONTACT_HREF);
+  const contactItem = NAV_ITEMS.find((item) => item.href === CONTACT_HREF);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useLayoutEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+
+    // Затухание у края и запасной отступ под него (см. .navScrollable в
+    // стилях) нужны только когда список якорей реально не помещается —
+    // иначе этот запасной отступ сам по себе делает список чуть шире
+    // видимой области, и nav начинает скроллиться на пару пикселей там,
+    // где скроллить уже нечего.
+    const checkOverflow = () => {
+      setIsNavScrollable(nav.scrollWidth > nav.clientWidth + 1);
+    };
+
+    checkOverflow();
+
+    const resizeObserver = new ResizeObserver(checkOverflow);
+    resizeObserver.observe(nav);
+    window.addEventListener('resize', checkOverflow);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', checkOverflow);
+    };
+  }, []);
+
+  return (
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+      <div className={`container ${styles.inner}`}>
+        <a
+          href="#top"
+          className={styles.logo}
+          aria-label={STUDIO_NAME}
+          onClick={(event) => {
+            event.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        >
+          {/* aria-label на ссылке задаёт доступное имя целиком, поэтому
+              знак декоративен, а название на мобильных можно скрыть
+              визуально без потери его для скринридеров. */}
+          <img src={logoImage} alt="" className={styles.logoImage} aria-hidden="true" />
+          <span className={styles.logoText} aria-hidden="true">
+            {STUDIO_NAME}
+          </span>
+        </a>
+
+        {/* На мобильных и планшетах якоря видны сразу и скроллятся по
+            горизонтали — вместо отдельного бокового меню по кнопке. */}
+        <nav
+          ref={navRef}
+          className={`${styles.nav} ${isNavScrollable ? styles.navScrollable : ''}`}
+          aria-label="Основная навигация"
+        >
+          <ul>
+            {scrollNavItems.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    scrollToSection(item.href);
+                  }}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className={styles.actions}>
+          {/* Кнопка-приглашение к связи всегда полностью видна — в отличие
+              от остальных якорей, она не участвует в горизонтальном скролле
+              nav, чтобы не обрезаться маской на узких экранах. */}
+          {contactItem && (
+            <a
+              href={contactItem.href}
+              className={styles.navCta}
+              aria-label={contactItem.label}
+              onClick={(event) => {
+                event.preventDefault();
+                scrollToSection(contactItem.href);
+              }}
+            >
+              {/* На узких экранах место в шапке ограничено, поэтому кнопка
+                  сжимается до одной иконки — на десктопе рядом остаётся и
+                  подпись. aria-label на самой ссылке хранит доступное имя
+                  целиком, поэтому иконка декоративна. */}
+              <TelegramLogo size={18} weight="fill" aria-hidden="true" />
+              <span className={styles.navCtaLabel}>{contactItem.label}</span>
+            </a>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+}

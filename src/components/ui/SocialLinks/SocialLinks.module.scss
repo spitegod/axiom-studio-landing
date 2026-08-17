@@ -1,0 +1,64 @@
+@use '../../../styles/mixins';
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.framed {
+  padding: 10px var(--space-lg);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-hairline-dark);
+  border-radius: var(--radius-full);
+}
+
+.framed.lg {
+  padding: 12px var(--space-xl);
+}
+
+.label {
+  font-size: var(--fs-button);
+  font-weight: 600;
+  color: var(--color-on-dark);
+  white-space: nowrap;
+}
+
+.icons {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  transition:
+    background-color var(--duration-base) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+
+  @include mixins.focus-ring;
+
+  &:hover {
+    background: var(--color-accent-deep);
+  }
+
+  &:active {
+    transform: scale(0.94);
+  }
+}
+
+.md .iconLink {
+  width: 40px;
+  height: 40px;
+}
+
+.lg .iconLink {
+  width: 48px;
+  height: 48px;
+}

@@ -1,0 +1,76 @@
+@use '../../../styles/mixins';
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard),
+    color var(--duration-base) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+
+  @include mixins.focus-ring;
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.md {
+  padding: 12px 24px;
+  font-size: var(--fs-button);
+  min-height: 44px;
+}
+
+.lg {
+  padding: 16px 30px;
+  font-size: 1rem;
+  min-height: 52px;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.primary {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+
+  &:hover {
+    background: var(--color-accent-deep);
+  }
+
+  &:active {
+    background: var(--color-accent-pressed);
+  }
+}
+
+.secondary {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-hairline-strong);
+
+  &:hover {
+    border-color: var(--color-ink);
+    background: var(--color-surface);
+  }
+}
+
+.secondary-on-dark {
+  background: transparent;
+  color: var(--color-on-dark);
+  border: 1px solid var(--color-hairline-dark);
+
+  &:hover {
+    border-color: var(--color-on-dark-muted);
+    background: rgba(255, 255, 255, 0.06);
+  }
+}

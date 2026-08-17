@@ -1,0 +1,385 @@
+@use '../../styles/mixins';
+
+.hero {
+  position: relative;
+  background: linear-gradient(180deg, var(--color-dark-deep) 0%, var(--color-dark) 100%);
+  color: var(--color-on-dark);
+  padding-top: calc(var(--header-height) + var(--space-section-lg));
+  padding-bottom: var(--space-section-lg);
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(circle, rgba(0, 237, 100, 0.16) 0%, rgba(0, 237, 100, 0) 70%);
+  pointer-events: none;
+  animation: glow-drift 16s ease-in-out infinite;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.6), transparent 75%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-section-sm);
+  align-items: center;
+
+  @include mixins.from-laptop {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-xxl);
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xl);
+  max-width: 560px;
+}
+
+.title {
+  font-size: var(--fs-hero-display);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-on-dark);
+}
+
+.description {
+  font-size: var(--fs-subtitle);
+  line-height: 1.5;
+  color: var(--color-on-dark-muted);
+  max-width: 46ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  width: 100%;
+
+  > a,
+  > button {
+    flex: 1 1 auto;
+  }
+
+  @include mixins.from-tablet {
+    width: auto;
+
+    > a,
+    > button {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+.heroSocial {
+  flex: 1 1 auto;
+  justify-content: center;
+
+  @include mixins.from-tablet {
+    flex: 0 0 auto;
+  }
+}
+
+// ===== Декоративная композиция =====
+
+.visual {
+  position: relative;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mixins.until-laptop {
+    min-height: 0;
+    margin-top: var(--space-xs);
+    padding-block: var(--space-lg);
+  }
+}
+
+.browserCard {
+  position: relative;
+  width: min(440px, 100%);
+  border-radius: var(--radius-xl);
+  background: var(--color-canvas);
+  box-shadow: var(--shadow-4);
+  overflow: hidden;
+  transform: rotate(-2deg);
+  animation: float-slow 7s var(--ease-standard) infinite;
+
+  @include mixins.until-laptop {
+    width: min(300px, 72vw);
+    transform: none;
+    box-shadow: var(--shadow-3);
+    animation-name: float-slow;
+  }
+}
+
+.browserTopBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-hairline);
+
+  @include mixins.until-laptop {
+    padding: 10px 12px;
+  }
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-hairline-strong);
+}
+
+.browserUrl {
+  margin-left: var(--space-sm);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  font-size: var(--fs-micro);
+  color: var(--color-steel);
+}
+
+.browserBody {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+
+  @include mixins.until-laptop {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+}
+
+.wireframeHero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.wireLineLg {
+  width: 78%;
+  height: 16px;
+  border-radius: var(--radius-xs);
+  background: var(--color-hairline-strong);
+}
+
+.wireLineSm {
+  width: 55%;
+  height: 10px;
+  border-radius: var(--radius-xs);
+  background: var(--color-hairline);
+}
+
+.wireAccentBlock {
+  margin-top: var(--space-xs);
+  width: 128px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+}
+
+.wireframeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+
+  span {
+    height: 56px;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-hairline);
+  }
+
+  @include mixins.until-laptop {
+    display: none;
+  }
+}
+
+.codeCard {
+  position: absolute;
+  top: -8%;
+  right: -4%;
+  width: 200px;
+  border-radius: var(--radius-lg);
+  background: var(--color-dark-deep);
+  border: 1px solid var(--color-hairline-dark);
+  box-shadow: var(--shadow-3);
+  padding: var(--space-md);
+  animation: float-slow 8s var(--ease-standard) infinite;
+  animation-delay: 0.4s;
+
+  @include mixins.until-laptop {
+    display: none;
+  }
+}
+
+.codeTopBar {
+  display: flex;
+  gap: 5px;
+  margin-bottom: var(--space-md);
+
+  .dot {
+    background: var(--color-hairline-dark);
+  }
+}
+
+.codeLines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  span {
+    display: block;
+    height: 6px;
+    border-radius: var(--radius-xs);
+    background: var(--color-hairline-dark);
+  }
+
+  span:first-child {
+    background: var(--color-accent);
+    opacity: 0.7;
+  }
+}
+
+.badgeCard {
+  position: absolute;
+  bottom: 4%;
+  left: -6%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--color-canvas);
+  box-shadow: var(--shadow-3);
+  animation: float-slow 6.5s var(--ease-standard) infinite;
+  animation-delay: 0.2s;
+
+  @include mixins.until-laptop {
+    left: auto;
+    right: var(--space-md);
+    bottom: -6%;
+    padding: 6px var(--space-sm);
+    gap: var(--space-xs);
+  }
+}
+
+.badgeIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-feature);
+  color: var(--color-accent-deep);
+  flex-shrink: 0;
+
+  @include mixins.until-laptop {
+    width: 28px;
+    height: 28px;
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+
+.badgeTitle {
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.badgeSubtitle {
+  font-size: var(--fs-micro);
+  color: var(--color-steel);
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.browserCard.browserCard {
+  animation-name: float-rotate;
+}
+
+@keyframes float-rotate {
+  0%,
+  100% {
+    transform: rotate(-2deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-2deg) translateY(-8px);
+  }
+}
+
+// Пятно неспешно обходит по кругу весь блок Hero (единицы vw/vh привязаны
+// к размеру вьюпорта, а не самого пятна, поэтому путь масштабируется на
+// разных экранах) — на пути слегка меняются масштаб и прозрачность, чтобы
+// движение не выглядело механическим.
+@keyframes glow-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.9;
+  }
+  20% {
+    transform: translate(-55vw, 20vh) scale(1.2);
+    opacity: 0.6;
+  }
+  40% {
+    transform: translate(-30vw, 60vh) scale(0.85);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(-68vw, 75vh) scale(1.3);
+    opacity: 0.55;
+  }
+  80% {
+    transform: translate(-15vw, 35vh) scale(0.95);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.9;
+  }
+}
+
+@include mixins.reduced-motion {
+  .browserCard,
+  .codeCard,
+  .badgeCard,
+  .glow {
+    animation: none;
+  }
+}
