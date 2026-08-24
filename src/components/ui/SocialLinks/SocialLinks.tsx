@@ -1,5 +1,5 @@
-import { ChatCircleDots, TelegramLogo } from '@phosphor-icons/react';
-import { MAX_URL, TELEGRAM_URL } from '../../../data/contacts';
+import { TelegramLogo } from '@phosphor-icons/react';
+import { TELEGRAM_URL } from '../../../data/contacts';
 import styles from './SocialLinks.module.scss';
 
 interface SocialLinksProps {
@@ -10,9 +10,6 @@ interface SocialLinksProps {
   className?: string;
 }
 
-// Замена одиночной CTA-кнопки ("Обсудить проект") на подпись с двумя
-// каналами связи: у бизнеса пока нет единого "основного" мессенджера,
-// поэтому предлагаем сразу оба варианта вместо одной ссылки.
 export function SocialLinks({ size = 'md', framed = false, className }: SocialLinksProps) {
   const classes = [styles.wrapper, styles[size], framed && styles.framed, className]
     .filter(Boolean)
@@ -22,15 +19,6 @@ export function SocialLinks({ size = 'md', framed = false, className }: SocialLi
     <div className={classes}>
       <span className={styles.label}>Мы в соц сетях</span>
       <div className={styles.icons}>
-        <a
-          href={MAX_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.iconLink}
-          aria-label="Написать нам в MAX"
-        >
-          <ChatCircleDots size={20} weight="bold" aria-hidden="true" />
-        </a>
         <a
           href={TELEGRAM_URL}
           target="_blank"
