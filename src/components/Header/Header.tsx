@@ -3,12 +3,14 @@ import { TelegramLogo } from '@phosphor-icons/react';
 import { NAV_ITEMS } from '../../data/content';
 import { reachGoal, METRIKA_GOALS } from '../../data/analytics';
 import { applyLink, STUDIO_NAME } from '../../data/contacts';
+import { isPrivacyPath } from '../../router/path';
 import { scrollToSection } from '../../utils/scrollToSection';
 import logoImage from '../../assets/axiom-logo.png';
 import styles from './Header.module.scss';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const onHome = !isPrivacyPath();
   const [isNavScrollable, setIsNavScrollable] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
@@ -45,16 +47,20 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${isScrolled || !onHome ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
         <a
-          href="#top"
+          href={onHome ? '#top' : '/'}
           className={styles.logo}
           aria-label={STUDIO_NAME}
-          onClick={(event) => {
-            event.preventDefault();
-            scrollToSection('#top');
-          }}
+          onClick={
+            onHome
+              ? (event) => {
+                  event.preventDefault();
+                  scrollToSection('#top');
+                }
+              : undefined
+          }
         >
           {/* aria-label на ссылке задаёт доступное имя целиком, поэтому
               знак декоративен, а название на мобильных можно скрыть
@@ -76,11 +82,15 @@ export function Header() {
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
                 <a
-                  href={item.href}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    scrollToSection(item.href);
-                  }}
+                  href={onHome ? item.href : `/${item.href}`}
+                  onClick={
+                    onHome
+                      ? (event) => {
+                          event.preventDefault();
+                          scrollToSection(item.href);
+                        }
+                      : undefined
+                  }
                 >
                   {item.label}
                 </a>

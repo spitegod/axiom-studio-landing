@@ -9,11 +9,14 @@ import {
   TELEGRAM_URL,
   TELEGRAM_USERNAME,
 } from '../../data/contacts';
+import { PRIVACY_PATH, PRIVACY_TITLE } from '../../data/privacy';
+import { isPrivacyPath } from '../../router/path';
 import { scrollToSection } from '../../utils/scrollToSection';
 import styles from './Footer.module.scss';
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const onHome = !isPrivacyPath();
 
   return (
     <footer className={styles.footer}>
@@ -30,11 +33,15 @@ export function Footer() {
               {NAV_ITEMS.map((item) => (
                 <li key={item.href}>
                   <a
-                    href={item.href}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      scrollToSection(item.href);
-                    }}
+                    href={onHome ? item.href : `/${item.href}`}
+                    onClick={
+                      onHome
+                        ? (event) => {
+                            event.preventDefault();
+                            scrollToSection(item.href);
+                          }
+                        : undefined
+                    }
                   >
                     {item.label}
                   </a>
@@ -74,6 +81,7 @@ export function Footer() {
           <p>
             © {year} {STUDIO_NAME}. Все права защищены.
           </p>
+          <a href={PRIVACY_PATH}>{PRIVACY_TITLE}</a>
         </div>
       </Container>
     </footer>
