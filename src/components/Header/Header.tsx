@@ -3,14 +3,14 @@ import { TelegramLogo } from '@phosphor-icons/react';
 import { NAV_ITEMS } from '../../data/content';
 import { reachGoal, METRIKA_GOALS } from '../../data/analytics';
 import { applyLink, STUDIO_NAME } from '../../data/contacts';
-import { isPrivacyPath } from '../../router/path';
+import { currentPath } from '../../router/path';
 import { scrollToSection } from '../../utils/scrollToSection';
 import logoImage from '../../assets/axiom-logo.png';
 import styles from './Header.module.scss';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const onHome = !isPrivacyPath();
+  const onHome = currentPath() === '/';
   const [isNavScrollable, setIsNavScrollable] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 

@@ -10,14 +10,17 @@ import { Faq } from './components/Faq/Faq';
 import { ContactCTA } from './components/ContactCTA/ContactCTA';
 import { Footer } from './components/Footer/Footer';
 import { Privacy } from './components/Privacy/Privacy';
+import { LandingPage } from './components/Landing/LandingPage';
 import { YandexMetrika } from './components/Analytics/YandexMetrika';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
-import { isPrivacyPath } from './router/path';
+import { usePageMeta } from './hooks/usePageMeta';
+import { getLanding } from './data/landings';
+import { PRIVACY_PATH } from './data/privacy';
+import { currentPath } from './router/path';
+import { metaForPath } from './seo/site';
 
 function Home() {
-  useScrollReveal();
-
   return (
     <>
       <Hero />
@@ -34,13 +37,24 @@ function Home() {
 
 function App() {
   useSmoothScroll();
-  const privacy = isPrivacyPath();
+  useScrollReveal();
+  const path = currentPath();
+  const landing = getLanding(path);
+  usePageMeta(metaForPath(path));
 
   return (
     <MotionConfig reducedMotion="user">
       <LazyMotion features={domAnimation} strict>
         <Header />
-        <main>{privacy ? <Privacy /> : <Home />}</main>
+        <main>
+          {path === PRIVACY_PATH ? (
+            <Privacy />
+          ) : landing ? (
+            <LandingPage page={landing} />
+          ) : (
+            <Home />
+          )}
+        </main>
         <Footer />
         <YandexMetrika />
       </LazyMotion>

@@ -1,0 +1,240 @@
+@use '../../styles/mixins';
+
+.page {
+  padding-top: calc(var(--header-height) + var(--space-section));
+  padding-bottom: var(--space-section);
+}
+
+.sheet {
+  max-width: 760px;
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xl);
+  font-size: var(--fs-caption);
+  color: var(--color-steel);
+
+  a {
+    color: var(--color-accent-pressed);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.eyebrow {
+  font-size: var(--fs-micro-uppercase);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-pressed);
+}
+
+.title {
+  font-size: var(--fs-heading-1);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.lead,
+.section p,
+.answer,
+.panelText {
+  font-size: var(--fs-body-md);
+  line-height: 1.65;
+  color: var(--color-slate);
+}
+
+.lead {
+  font-size: var(--fs-subtitle);
+  max-width: 62ch;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.hint,
+.panelHint {
+  max-width: 46ch;
+  font-size: var(--fs-caption);
+  line-height: 1.5;
+  color: var(--color-steel);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-section);
+}
+
+.heading {
+  font-size: var(--fs-heading-2);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.textLink {
+  color: var(--color-accent-pressed);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-left: 1.15em;
+  list-style: disc;
+}
+
+.list li {
+  font-size: var(--fs-body-md);
+  line-height: 1.6;
+  color: var(--color-slate);
+}
+
+.faq {
+  margin-top: var(--space-section-lg);
+  padding-block: var(--space-section-lg);
+  background: var(--color-surface);
+}
+
+.faq .heading {
+  margin-bottom: var(--space-xl);
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+}
+
+.faqItem {
+  padding-block: var(--space-lg);
+  border-bottom: 1px solid var(--color-hairline);
+
+  &:first-child {
+    border-top: 1px solid var(--color-hairline);
+  }
+}
+
+.question {
+  margin-bottom: var(--space-sm);
+  font-size: var(--fs-heading-5);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-ink);
+}
+
+.answer {
+  max-width: 68ch;
+}
+
+.related {
+  margin-top: var(--space-section-lg);
+}
+
+.related .heading {
+  margin-bottom: var(--space-lg);
+}
+
+.relatedList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.relatedList a {
+  font-size: var(--fs-heading-5);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.relatedList p {
+  margin-top: var(--space-xxs);
+  font-size: var(--fs-body-sm);
+  line-height: 1.5;
+  color: var(--color-steel);
+}
+
+.cta {
+  margin-top: var(--space-section-lg);
+}
+
+.panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(160deg, var(--color-dark-deep) 0%, var(--color-dark) 100%);
+  color: var(--color-on-dark);
+}
+
+.glow {
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  width: 520px;
+  height: 520px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(0, 237, 100, 0.18) 0%, rgba(0, 237, 100, 0) 70%);
+  pointer-events: none;
+}
+
+.panelBody {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-section-sm) var(--space-xl);
+
+  @include mixins.from-laptop {
+    padding: var(--space-section) var(--space-section-sm);
+  }
+
+  @include mixins.until-tablet {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
+
+.panelTitle {
+  max-width: 22ch;
+  font-size: var(--fs-heading-2);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.panelText {
+  max-width: 52ch;
+  color: var(--color-on-dark-muted);
+}
+
+.panelHint {
+  color: var(--color-on-dark-muted);
+}

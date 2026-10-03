@@ -7,6 +7,11 @@ import { useLayoutEffect } from 'react';
  */
 export function useScrollReveal() {
   useLayoutEffect(() => {
+    // В пререндере контент виден до загрузки скрипта (см. #prerender-reveal).
+    // Классы ниже выставляем в этом же кадре, до снятия этого правила,
+    // чтобы уже видимые блоки не мигали.
+    const boot = document.getElementById('prerender-reveal');
+
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches;
@@ -15,6 +20,7 @@ export function useScrollReveal() {
 
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {
       elements.forEach((el) => el.classList.add('is-visible'));
+      boot?.remove();
       return;
     }
 
@@ -47,6 +53,7 @@ export function useScrollReveal() {
     );
 
     toObserve.forEach((el) => observer.observe(el));
+    boot?.remove();
 
     return () => observer.disconnect();
   }, []);

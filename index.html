@@ -4,36 +4,37 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#00232f" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Axiom Studio" />
+    <meta property="og:image" content="https://axiom-studio.ru/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://axiom-studio.ru/og-image.jpg" />
+
+    <!--seo-->
     <meta
       name="description"
       content="Строим продукт, запускаем и приводим первых клиентов в обмен на долю в стартапе или процент выручки — без оплаты за разработку. Ищем основателей со знанием рынка."
     />
-    <meta name="theme-color" content="#00232f" />
     <link rel="canonical" href="https://axiom-studio.ru/" />
-
-    <!-- Open Graph / мессенджеры (Telegram и т.д.) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Axiom Studio" />
     <meta property="og:title" content="Axiom Studio — венчурная студия: строим стартапы за долю" />
     <meta
       property="og:description"
       content="Строим продукт, запускаем и приводим первых клиентов в обмен на долю в стартапе или процент выручки — без оплаты за разработку. Ищем основателей со знанием рынка."
     />
     <meta property="og:url" content="https://axiom-studio.ru/" />
-    <meta property="og:image" content="https://axiom-studio.ru/og-image.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Axiom Studio — строим ваш стартап за долю, а не за деньги" />
-    <meta property="og:locale" content="ru_RU" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Axiom Studio — венчурная студия: строим стартапы за долю" />
     <meta
       name="twitter:description"
       content="Строим продукт, запускаем и приводим первых клиентов в обмен на долю в стартапе или процент выручки — без оплаты за разработку. Ищем основателей со знанием рынка."
     />
-    <meta name="twitter:image" content="https://axiom-studio.ru/og-image.jpg" />
+    <title>Axiom Studio — венчурная студия: строим стартапы за долю</title>
+    <!--/seo-->
 
     <script type="application/ld+json">
       {
@@ -47,6 +48,15 @@
       }
     </script>
 
+    <!-- До скрипта блоки с классом reveal видимы. Хук useScrollReveal снимает
+         правило в том же кадре, где включает анимацию появления. -->
+    <style id="prerender-reveal">
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    </style>
+
     <!--
       Яндекс.Метрика не вставлена сюда нарочно: сниппет подключается из приложения
       только если в src/data/analytics.ts задан YANDEX_METRIKA_ID. Пустой id сюда не пишем.
@@ -58,7 +68,6 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <title>Axiom Studio — венчурная студия: строим стартапы за долю</title>
   </head>
   <body>
     <div id="root"></div>
