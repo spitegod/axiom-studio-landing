@@ -26,8 +26,6 @@ export function Partnership() {
             );
           })}
         </ul>
-
-        <p className={`${styles.note} reveal`}>{PARTNERSHIP.note}</p>
       </Container>
     </section>
   );
