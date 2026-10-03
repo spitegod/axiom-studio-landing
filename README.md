@@ -30,3 +30,15 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+## Static hosting
+
+`/privacy` is a client-side route in the same build. Vite dev and `vite preview` return `index.html` for that path, so a refresh works there. A static host must do the same, otherwise opening or refreshing `/privacy` responds with 404.
+
+For nginx:
+
+```nginx
+location / {
+    try_files $uri $uri/ /index.html;
+}
+```

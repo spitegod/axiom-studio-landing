@@ -1,19 +1,18 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { TelegramLogo } from '@phosphor-icons/react';
-import { NAV_ITEMS, SECTION_IDS } from '../../data/content';
-import { STUDIO_NAME } from '../../data/contacts';
+import { NAV_ITEMS } from '../../data/content';
+import { reachGoal, METRIKA_GOALS } from '../../data/analytics';
+import { applyLink, STUDIO_NAME } from '../../data/contacts';
+import { isPrivacyPath } from '../../router/path';
 import { scrollToSection } from '../../utils/scrollToSection';
 import logoImage from '../../assets/axiom-logo.png';
 import styles from './Header.module.scss';
 
-const CONTACT_HREF = `#${SECTION_IDS.contact}`;
-
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const onHome = !isPrivacyPath();
   const [isNavScrollable, setIsNavScrollable] = useState(false);
   const navRef = useRef<HTMLElement>(null);
-  const scrollNavItems = NAV_ITEMS.filter((item) => item.href !== CONTACT_HREF);
-  const contactItem = NAV_ITEMS.find((item) => item.href === CONTACT_HREF);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 8);
@@ -48,16 +47,20 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${isScrolled || !onHome ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
         <a
-          href="#top"
+          href={onHome ? '#top' : '/'}
           className={styles.logo}
           aria-label={STUDIO_NAME}
-          onClick={(event) => {
-            event.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
+          onClick={
+            onHome
+              ? (event) => {
+                  event.preventDefault();
+                  scrollToSection('#top');
+                }
+              : undefined
+          }
         >
           {/* aria-label на ссылке задаёт доступное имя целиком, поэтому
               знак декоративен, а название на мобильных можно скрыть
@@ -76,14 +79,18 @@ export function Header() {
           aria-label="Основная навигация"
         >
           <ul>
-            {scrollNavItems.map((item) => (
+            {NAV_ITEMS.map((item) => (
               <li key={item.href}>
                 <a
-                  href={item.href}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    scrollToSection(item.href);
-                  }}
+                  href={onHome ? item.href : `/${item.href}`}
+                  onClick={
+                    onHome
+                      ? (event) => {
+                          event.preventDefault();
+                          scrollToSection(item.href);
+                        }
+                      : undefined
+                  }
                 >
                   {item.label}
                 </a>
@@ -96,24 +103,21 @@ export function Header() {
           {/* Кнопка-приглашение к связи всегда полностью видна — в отличие
               от остальных якорей, она не участвует в горизонтальном скролле
               nav, чтобы не обрезаться маской на узких экранах. */}
-          {contactItem && (
-            <a
-              href={contactItem.href}
-              className={styles.navCta}
-              aria-label={contactItem.label}
-              onClick={(event) => {
-                event.preventDefault();
-                scrollToSection(contactItem.href);
-              }}
-            >
-              {/* На узких экранах место в шапке ограничено, поэтому кнопка
-                  сжимается до одной иконки — на десктопе рядом остаётся и
-                  подпись. aria-label на самой ссылке хранит доступное имя
-                  целиком, поэтому иконка декоративна. */}
-              <TelegramLogo size={18} weight="fill" aria-hidden="true" />
-              <span className={styles.navCtaLabel}>{contactItem.label}</span>
-            </a>
-          )}
+          <a
+            href={applyLink('header')}
+            className={styles.navCta}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Подать заявку"
+            onClick={() => reachGoal(METRIKA_GOALS.applyHeader)}
+          >
+            {/* На узких экранах место в шапке ограничено, поэтому кнопка
+                сжимается до одной иконки — на десктопе рядом остаётся и
+                подпись. aria-label на самой ссылке хранит доступное имя
+                целиком, поэтому иконка декоративна. */}
+            <TelegramLogo size={18} weight="fill" aria-hidden="true" />
+            <span className={styles.navCtaLabel}>Заявка</span>
+          </a>
         </div>
       </div>
     </header>

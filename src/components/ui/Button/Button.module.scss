@@ -13,6 +13,7 @@
   transition:
     background-color var(--duration-base) var(--ease-standard),
     border-color var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard),
     color var(--duration-base) var(--ease-standard),
     transform var(--duration-fast) var(--ease-standard);
 
@@ -36,16 +37,43 @@
 }
 
 .icon {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
 }
 
 .primary {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: var(--color-accent);
   color: var(--color-on-accent);
 
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      105deg,
+      transparent 32%,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 68%
+    );
+    transform: translateX(-130%);
+    pointer-events: none;
+    transition: transform 0.45s var(--ease-standard);
+  }
+
   &:hover {
     background: var(--color-accent-deep);
+    box-shadow: 0 8px 28px rgba(0, 237, 100, 0.35);
+
+    &::before {
+      transform: translateX(130%);
+      transition-duration: 0.7s;
+    }
   }
 
   &:active {
@@ -72,5 +100,16 @@
   &:hover {
     border-color: var(--color-on-dark-muted);
     background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+@include mixins.reduced-motion {
+  .button,
+  .primary::before {
+    transition: none;
+  }
+
+  .primary::before {
+    display: none;
   }
 }

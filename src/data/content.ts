@@ -3,9 +3,12 @@
 // можно было заменить без правки разметки.
 
 export const SECTION_IDS = {
-  services: 'services',
-  projects: 'projects',
+  partnership: 'partnership',
+  exchange: 'exchange',
   process: 'process',
+  fit: 'fit',
+  projects: 'projects',
+  faq: 'faq',
   contact: 'contact',
 } as const;
 
@@ -15,8 +18,8 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Услуги', href: `#${SECTION_IDS.services}` },
+  { label: 'Партнёрство', href: `#${SECTION_IDS.partnership}` },
+  { label: 'Процесс', href: `#${SECTION_IDS.process}` },
   { label: 'Проекты', href: `#${SECTION_IDS.projects}` },
-  { label: 'Этапы', href: `#${SECTION_IDS.process}` },
-  { label: 'Связаться', href: `#${SECTION_IDS.contact}` },
+  { label: 'Вопросы', href: `#${SECTION_IDS.faq}` },
 ];

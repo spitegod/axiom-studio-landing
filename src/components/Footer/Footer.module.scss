@@ -85,7 +85,21 @@
 }
 
 .bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-sm) var(--space-lg);
   padding-top: var(--space-xl);
   font-size: var(--fs-caption);
   color: var(--color-on-dark-muted);
+
+  a {
+    color: var(--color-on-dark-muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
 }
