@@ -1,10 +1,9 @@
 /**
- * Реквизиты оператора. Заменить плейсхолдеры в скобках на настоящие данные —
- * они подставятся и в политику, и в текст согласия.
+ * Реквизиты оператора. Подставляются в политику и в текст согласия.
  */
-export const OPERATOR_FULL_NAME = '[ФИО ОПЕРАТОРА]';
-export const OPERATOR_INN = '[ИНН]';
-export const OPERATOR_EMAIL = '[EMAIL ДЛЯ ОБРАЩЕНИЙ]';
+export const OPERATOR_FULL_NAME = 'Ивкин Александр Дмитриевич';
+export const OPERATOR_INN = '344222609595';
+export const OPERATOR_EMAIL = 'axiom-studio@mail.ru';
 
 export const OPERATOR_BRAND = 'Axiom Studio';
 export const OPERATOR_STATUS =

@@ -14,9 +14,15 @@ import {
 } from '../../data/privacy';
 import styles from './Privacy.module.scss';
 
-const PLACEHOLDERS = [OPERATOR_FULL_NAME, OPERATOR_INN, OPERATOR_EMAIL];
+const PLACEHOLDERS = [OPERATOR_FULL_NAME, OPERATOR_INN, OPERATOR_EMAIL].filter((item) =>
+  item.startsWith('['),
+);
 
 function TextWithPlaceholders({ text }: { text: string }) {
+  if (PLACEHOLDERS.length === 0) {
+    return <>{text}</>;
+  }
+
   const pattern = new RegExp(
     `(${PLACEHOLDERS.map((item) => item.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`,
     'g',

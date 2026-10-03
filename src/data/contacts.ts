@@ -5,7 +5,7 @@ export const TELEGRAM_USERNAME = 'mgr_axiom_studio';
 /** Личный чат менеджера. */
 export const TELEGRAM_URL = `https://t.me/${TELEGRAM_USERNAME}`;
 
-export const STUDIO_EMAIL = 'otvvtz@mail.ru';
+export const STUDIO_EMAIL = 'axiom-studio@mail.ru';
 
 export const STUDIO_NAME = 'Axiom Studio';
 
