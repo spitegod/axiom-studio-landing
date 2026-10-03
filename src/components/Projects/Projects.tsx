@@ -1,5 +1,5 @@
 import { Container } from '../ui';
-import { PROJECTS } from '../../data/projects';
+import { PROJECTS, PROJECTS_TITLE } from '../../data/projects';
 import { SECTION_IDS } from '../../data/content';
 import styles from './Projects.module.scss';
 
@@ -8,7 +8,7 @@ export function Projects() {
     <section className={styles.section} id={SECTION_IDS.projects}>
       <Container>
         <div className={`${styles.header} reveal`}>
-          <h2 className={styles.title}>Избранные проекты</h2>
+          <h2 className={styles.title}>{PROJECTS_TITLE}</h2>
         </div>
 
         {/* Каждый проект — отдельный reveal-элемент, как и плитки услуг:
@@ -32,8 +32,8 @@ export function Projects() {
 
               <div className={styles.content}>
                 <div className={styles.meta}>
-                  <span className={styles.label}>{project.label}</span>
-                  <h3 className={styles.type}>{project.type}</h3>
+                  <h3 className={styles.label}>{project.label}</h3>
+                  <p className={styles.type}>{project.type}</p>
                 </div>
                 <p className={styles.description}>{project.description}</p>
                 <ul className={styles.tags}>

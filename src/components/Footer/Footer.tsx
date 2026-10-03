@@ -1,7 +1,14 @@
 import { PaperPlaneTilt } from '@phosphor-icons/react';
 import { Container } from '../ui';
 import { NAV_ITEMS } from '../../data/content';
-import { STUDIO_EMAIL, STUDIO_NAME, TELEGRAM_URL, TELEGRAM_USERNAME } from '../../data/contacts';
+import {
+  CHANNEL_URL,
+  STUDIO_EMAIL,
+  STUDIO_NAME,
+  STUDIO_TAGLINE,
+  TELEGRAM_URL,
+  TELEGRAM_USERNAME,
+} from '../../data/contacts';
 import { scrollToSection } from '../../utils/scrollToSection';
 import styles from './Footer.module.scss';
 
@@ -14,7 +21,7 @@ export function Footer() {
         <div className={styles.top}>
           <div className={styles.brand}>
             <span className={styles.logo}>{STUDIO_NAME}</span>
-            <p className={styles.description}>Продукты, которые выдерживают проверку</p>
+            <p className={styles.description}>{STUDIO_TAGLINE}</p>
           </div>
 
           <nav className={styles.nav} aria-label="Навигация по разделам">
@@ -50,6 +57,16 @@ export function Footer() {
             <a className={styles.contactLink} href={`mailto:${STUDIO_EMAIL}`}>
               {STUDIO_EMAIL}
             </a>
+            {CHANNEL_URL && (
+              <a
+                className={styles.contactLink}
+                href={CHANNEL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Канал в Telegram
+              </a>
+            )}
           </div>
         </div>
 

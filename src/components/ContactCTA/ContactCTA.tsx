@@ -1,7 +1,7 @@
-import { PaperPlaneTilt } from '@phosphor-icons/react';
-import { Button, Container } from '../ui';
+import { ApplyButton, Container } from '../ui';
 import { SECTION_IDS } from '../../data/content';
-import { TELEGRAM_URL } from '../../data/contacts';
+import { FINAL_CTA } from '../../data/cta';
+import { APPLY_HINT } from '../../data/contacts';
 import styles from './ContactCTA.module.scss';
 
 export function ContactCTA() {
@@ -12,22 +12,12 @@ export function ContactCTA() {
           <div className={styles.glow} aria-hidden="true" />
 
           <div className={styles.content}>
-            <h2 className={styles.title}>Есть идея? Давайте осуществим её вместе!</h2>
-            <p className={styles.description}>
-              Расскажите о задаче — обсудим проект, предложим подход и ответим
-              на вопросы.
-            </p>
+            <h2 className={styles.title}>{FINAL_CTA.title}</h2>
+            <p className={styles.description}>{FINAL_CTA.description}</p>
 
-            <Button
-              href={TELEGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="primary"
-              size="lg"
-              icon={<PaperPlaneTilt size={18} weight="bold" aria-hidden="true" />}
-            >
-              Написать в Telegram
-            </Button>
+            <ApplyButton source="final">{FINAL_CTA.button}</ApplyButton>
+
+            <p className={styles.hint}>{APPLY_HINT}</p>
           </div>
         </div>
       </Container>

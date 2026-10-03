@@ -1,19 +1,20 @@
 import { Container } from '../ui';
-import { PROCESS_STEPS } from '../../data/process';
+import { PROCESS_LEAD, PROCESS_STEPS, PROCESS_TITLE } from '../../data/process';
 import { SECTION_IDS } from '../../data/content';
 import styles from './Process.module.scss';
 
 export function Process() {
   return (
-    <section className={`${styles.section} reveal`} id={SECTION_IDS.process}>
+    <section className={styles.section} id={SECTION_IDS.process}>
       <Container>
-        <div className={styles.header}>
-          <h2 className={styles.title}>От идеи до готового продукта</h2>
+        <div className={`${styles.header} reveal`}>
+          <h2 className={styles.title}>{PROCESS_TITLE}</h2>
+          <p className={styles.lead}>{PROCESS_LEAD}</p>
         </div>
 
         <ol className={styles.timeline}>
           {PROCESS_STEPS.map((step, index) => (
-            <li className={styles.step} key={step.index}>
+            <li className={`${styles.step} reveal`} key={step.index}>
               <div className={styles.content}>
                 <span className={styles.stepIndex}>{step.index}</span>
                 <h3 className={styles.stepTitle}>{step.title}</h3>

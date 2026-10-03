@@ -1,6 +1,7 @@
-import { Devices } from '@phosphor-icons/react';
-import { Button, Container, SocialLinks } from '../ui';
+import { ArrowDown, Handshake } from '@phosphor-icons/react';
+import { ApplyButton, Button, Container } from '../ui';
 import { SECTION_IDS } from '../../data/content';
+import { HERO, HERO_VISUAL } from '../../data/hero';
 import { scrollToSection } from '../../utils/scrollToSection';
 import styles from './Hero.module.scss';
 
@@ -12,70 +13,74 @@ export function Hero() {
 
       <Container className={styles.inner}>
         <div className={styles.content}>
-          <h1 className={styles.title}>
-            Продукты, которые выдерживают проверку
-          </h1>
+          <h1 className={styles.title}>{HERO.title}</h1>
 
-          <p className={styles.description}>
-            Берём на себя весь процесс — от идеи и дизайна до разработки,
-            запуска и дальнейшей поддержки.
-          </p>
+          <p className={styles.description}>{HERO.description}</p>
 
           <div className={styles.actions}>
-            <SocialLinks size="lg" framed className={styles.heroSocial} />
+            <ApplyButton source="hero">{HERO.primaryCta}</ApplyButton>
             <Button
+              href={`#${SECTION_IDS.partnership}`}
               variant="secondary-on-dark"
               size="lg"
-              onClick={() => scrollToSection(`#${SECTION_IDS.projects}`)}
+              icon={<ArrowDown size={18} weight="bold" aria-hidden="true" />}
+              onClick={(event) => {
+                event.preventDefault();
+                scrollToSection(`#${SECTION_IDS.partnership}`);
+              }}
             >
-              Посмотреть работы
+              {HERO.secondaryCta}
             </Button>
           </div>
+
+          <ul className={styles.facts}>
+            {HERO.facts.map((fact) => (
+              <li key={fact}>{fact}</li>
+            ))}
+          </ul>
         </div>
 
         <div className={styles.visual} aria-hidden="true">
-          <div className={styles.browserCard}>
-            <div className={styles.browserTopBar}>
+          <div className={styles.splitCard}>
+            <div className={styles.splitHead}>
               <span className={styles.dot} />
               <span className={styles.dot} />
               <span className={styles.dot} />
-              <span className={styles.browserUrl}>studio.site</span>
+              <span className={styles.splitHeadLabel}>{HERO_VISUAL.cardLabel}</span>
             </div>
-            <div className={styles.browserBody}>
-              <div className={styles.wireframeHero}>
-                <span className={styles.wireLineLg} />
-                <span className={styles.wireLineSm} />
-                <span className={styles.wireAccentBlock} />
+            <div className={styles.splitBody}>
+              <div className={styles.splitCol}>
+                <span className={styles.splitEyebrow}>{HERO_VISUAL.founderLabel}</span>
+                <ul className={styles.splitList}>
+                  {HERO_VISUAL.founderPoints.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
               </div>
-              <div className={styles.wireframeGrid}>
-                <span />
-                <span />
-                <span />
+              <div className={`${styles.splitCol} ${styles.splitColAccent}`}>
+                <span className={styles.splitEyebrow}>{HERO_VISUAL.studioLabel}</span>
+                <ul className={styles.splitList}>
+                  {HERO_VISUAL.studioPoints.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
 
-          <div className={styles.codeCard}>
-            <div className={styles.codeTopBar}>
-              <span className={styles.dot} />
-              <span className={styles.dot} />
-              <span className={styles.dot} />
-            </div>
-            <div className={styles.codeLines}>
-              <span style={{ width: '78%' }} />
-              <span style={{ width: '52%' }} />
-              <span style={{ width: '64%' }} />
-              <span style={{ width: '40%' }} />
-            </div>
+          <div className={styles.noteCard}>
+            <span className={styles.noteAccent} />
+            <p className={styles.noteTitle}>{HERO_VISUAL.noteTitle}</p>
+            <p className={styles.noteText}>{HERO_VISUAL.noteText}</p>
           </div>
 
           <div className={styles.badgeCard}>
             <span className={styles.badgeIcon}>
-              <Devices size={18} weight="duotone" aria-hidden="true" />
+              <Handshake size={18} weight="duotone" aria-hidden="true" />
             </span>
             <div>
-              <p className={styles.badgeTitle}>Адаптивная вёрстка</p>
-              <p className={styles.badgeSubtitle}>Любые устройства</p>
+              <p className={styles.badgeTitle}>{HERO_VISUAL.badgeTitle}</p>
+              <p className={styles.badgeSubtitle}>{HERO_VISUAL.badgeText}</p>
             </div>
           </div>
         </div>
