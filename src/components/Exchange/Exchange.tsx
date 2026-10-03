@@ -14,7 +14,7 @@ export function Exchange() {
           <p className={styles.lead}>{EXCHANGE.lead}</p>
         </div>
 
-        <div className={styles.columns}>
+        <div className={`${styles.columns} reveal-stagger`}>
           <article className={`${styles.panel} ${styles.panelStudio} reveal`}>
             <h3 className={styles.panelTitle}>{EXCHANGE.studioTitle}</h3>
             <ul className={styles.list}>

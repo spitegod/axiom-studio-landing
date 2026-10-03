@@ -15,7 +15,7 @@ export function FounderFit() {
           <p className={styles.lead}>{FOUNDER_FIT.lead}</p>
         </div>
 
-        <div className={styles.columns}>
+        <div className={`${styles.columns} reveal-stagger`}>
           <article className={`${styles.card} reveal`}>
             <h3 className={styles.cardTitle}>{FOUNDER_FIT.goodTitle}</h3>
             <ul className={styles.list}>

@@ -16,6 +16,19 @@
     background-color var(--duration-base) var(--ease-standard),
     border-color var(--duration-base) var(--ease-standard);
   padding-top: env(safe-area-inset-top);
+  animation: header-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes header-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .header.scrolled {
@@ -168,12 +181,14 @@
   border-radius: var(--radius-full);
   transition:
     background-color var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard),
     transform var(--duration-fast) var(--ease-standard);
 
   @include mixins.focus-ring;
 
   &:hover {
     background: var(--color-accent-deep);
+    box-shadow: 0 0 0 4px rgba(0, 237, 100, 0.22);
   }
 
   &:active {
@@ -195,5 +210,11 @@
 
   @include mixins.from-laptop {
     display: inline;
+  }
+}
+
+@include mixins.reduced-motion {
+  .header {
+    animation: none;
   }
 }

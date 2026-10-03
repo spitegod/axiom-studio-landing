@@ -53,7 +53,7 @@ export function Header() {
           aria-label={STUDIO_NAME}
           onClick={(event) => {
             event.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            scrollToSection('#top');
           }}
         >
           {/* aria-label на ссылке задаёт доступное имя целиком, поэтому

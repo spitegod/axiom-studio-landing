@@ -12,7 +12,7 @@ export function Partnership() {
           <p className={styles.lead}>{PARTNERSHIP.lead}</p>
         </div>
 
-        <ul className={styles.grid}>
+        <ul className={`${styles.grid} reveal-stagger`}>
           {PARTNERSHIP_POINTS.map((point) => {
             const Icon = point.icon;
             return (

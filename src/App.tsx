@@ -1,3 +1,4 @@
+import { LazyMotion, MotionConfig, domAnimation } from './motion';
 import { Header } from './components/Header/Header';
 import { Hero } from './components/Hero/Hero';
 import { Partnership } from './components/Partnership/Partnership';
@@ -10,26 +11,30 @@ import { ContactCTA } from './components/ContactCTA/ContactCTA';
 import { Footer } from './components/Footer/Footer';
 import { YandexMetrika } from './components/Analytics/YandexMetrika';
 import { useScrollReveal } from './hooks/useScrollReveal';
+import { useSmoothScroll } from './hooks/useSmoothScroll';
 
 function App() {
   useScrollReveal();
+  useSmoothScroll();
 
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <Partnership />
-        <Exchange />
-        <Process />
-        <FounderFit />
-        <Projects />
-        <Faq />
-        <ContactCTA />
-      </main>
-      <Footer />
-      <YandexMetrika />
-    </>
+    <MotionConfig reducedMotion="user">
+      <LazyMotion features={domAnimation} strict>
+        <Header />
+        <main>
+          <Hero />
+          <Partnership />
+          <Exchange />
+          <Process />
+          <FounderFit />
+          <Projects />
+          <Faq />
+          <ContactCTA />
+        </main>
+        <Footer />
+        <YandexMetrika />
+      </LazyMotion>
+    </MotionConfig>
   );
 }
 

@@ -75,10 +75,22 @@
 }
 
 .line {
+  position: relative;
   width: 2px;
   flex: 1;
   margin-top: var(--space-xs);
+  overflow: hidden;
+  border-radius: 1px;
   background: var(--color-hairline);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-accent);
+    transform-origin: top center;
+    transform: scaleY(clamp(0, calc((var(--p, 1) - var(--i, 0)) * var(--segments, 5)), 1));
+  }
 }
 
 .content {

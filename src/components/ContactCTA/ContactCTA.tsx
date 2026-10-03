@@ -1,4 +1,4 @@
-import { ApplyButton, Container } from '../ui';
+import { ApplyButton, Container, Magnetic } from '../ui';
 import { SECTION_IDS } from '../../data/content';
 import { FINAL_CTA } from '../../data/cta';
 import { APPLY_HINT } from '../../data/contacts';
@@ -15,7 +15,9 @@ export function ContactCTA() {
             <h2 className={styles.title}>{FINAL_CTA.title}</h2>
             <p className={styles.description}>{FINAL_CTA.description}</p>
 
-            <ApplyButton source="final">{FINAL_CTA.button}</ApplyButton>
+            <Magnetic>
+              <ApplyButton source="final">{FINAL_CTA.button}</ApplyButton>
+            </Magnetic>
 
             <p className={styles.hint}>{APPLY_HINT}</p>
           </div>

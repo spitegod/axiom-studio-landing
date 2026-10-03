@@ -1,24 +1,88 @@
+import { useEffect, useState } from 'react';
 import { ArrowDown, Handshake } from '@phosphor-icons/react';
-import { ApplyButton, Button, Container } from '../ui';
+import { m } from '../../motion';
+import { ApplyButton, Button, Container, Magnetic } from '../ui';
 import { SECTION_IDS } from '../../data/content';
 import { HERO, HERO_VISUAL } from '../../data/hero';
+import { EASE } from '../../motion/ease';
 import { scrollToSection } from '../../utils/scrollToSection';
 import styles from './Hero.module.scss';
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: EASE },
+  },
+};
+
+const titleWords = HERO.title.split(' ');
+
 export function Hero() {
+  const [offscreen, setOffscreen] = useState(false);
+
+  useEffect(() => {
+    const hero = document.getElementById('top');
+    if (!hero || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setOffscreen(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className={styles.hero} id="top">
+    <section className={`${styles.hero} ${offscreen ? styles.paused : ''}`} id="top">
       <div className={styles.glow} aria-hidden="true" />
+      <div className={styles.orb} aria-hidden="true" />
       <div className={styles.grid} aria-hidden="true" />
+      <div className={styles.noise} aria-hidden="true" />
 
       <Container className={styles.inner}>
         <div className={styles.content}>
-          <h1 className={styles.title}>{HERO.title}</h1>
+          <m.h1
+            className={styles.title}
+            aria-label={HERO.title}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.045, delayChildren: 0.08 } },
+            }}
+          >
+            {titleWords.map((word, index) => (
+              <m.span
+                key={`${word}-${index}`}
+                className={styles.word}
+                aria-hidden="true"
+                variants={fadeUp}
+              >
+                {word}
+              </m.span>
+            ))}
+          </m.h1>
 
-          <p className={styles.description}>{HERO.description}</p>
+          <m.p
+            className={styles.description}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.42, ease: EASE }}
+          >
+            {HERO.description}
+          </m.p>
 
-          <div className={styles.actions}>
-            <ApplyButton source="hero">{HERO.primaryCta}</ApplyButton>
+          <m.div
+            className={styles.actions}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.54, ease: EASE }}
+          >
+            <Magnetic className={styles.magnetic}>
+              <ApplyButton source="hero">{HERO.primaryCta}</ApplyButton>
+            </Magnetic>
             <Button
               href={`#${SECTION_IDS.partnership}`}
               variant="secondary-on-dark"
@@ -31,16 +95,32 @@ export function Hero() {
             >
               {HERO.secondaryCta}
             </Button>
-          </div>
+          </m.div>
 
-          <ul className={styles.facts}>
+          <m.ul
+            className={styles.facts}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.07, delayChildren: 0.66 } },
+            }}
+          >
             {HERO.facts.map((fact) => (
-              <li key={fact}>{fact}</li>
+              <m.li key={fact} variants={fadeUp}>
+                {fact}
+              </m.li>
             ))}
-          </ul>
+          </m.ul>
         </div>
 
-        <div className={styles.visual} aria-hidden="true">
+        <m.div
+          className={styles.visual}
+          aria-hidden="true"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.28, ease: EASE }}
+        >
           <div className={styles.splitCard}>
             <div className={styles.splitHead}>
               <span className={styles.dot} />
@@ -83,7 +163,7 @@ export function Hero() {
               <p className={styles.badgeSubtitle}>{HERO_VISUAL.badgeText}</p>
             </div>
           </div>
-        </div>
+        </m.div>
       </Container>
     </section>
   );

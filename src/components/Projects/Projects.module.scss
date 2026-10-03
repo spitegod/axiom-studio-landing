@@ -41,11 +41,23 @@
 }
 
 .visual {
+  --rx: 0deg;
+  --ry: 0deg;
+  --tx: 0px;
+  --ty: 0px;
   width: 100%;
   aspect-ratio: 3 / 2;
   overflow: hidden;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-3);
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow var(--duration-base) var(--ease-standard);
+
+  &:hover {
+    box-shadow: var(--shadow-4);
+  }
 
   @include mixins.from-laptop {
     flex: 0 0 56%;
@@ -56,6 +68,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1.08) translate3d(var(--tx), var(--ty), 0);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .content {
@@ -111,4 +125,12 @@
   border: 1px solid var(--color-hairline-strong);
   font-size: var(--fs-caption);
   color: var(--color-slate);
+}
+
+@include mixins.reduced-motion {
+  .visual,
+  .visualImage {
+    transform: none;
+    transition: none;
+  }
 }
