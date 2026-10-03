@@ -20,10 +20,10 @@ export const STUDIO_TAGLINE =
 export const APPLY_URL = TELEGRAM_URL;
 
 /**
- * TODO: подставить ссылку на Telegram-канал студии.
- * Пока null — ссылку на канал нигде не показываем.
+ * Публичный Telegram-канал студии.
+ * null — ссылку на канал нигде не показываем.
  */
-export const CHANNEL_URL: string | null = null;
+export const CHANNEL_URL: string | null = 'https://t.me/axioma_community';
 
 /**
  * TODO: обновить текст, когда APPLY_URL станет ссылкой на mini app с анкетой.
