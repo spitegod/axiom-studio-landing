@@ -1,44 +1,73 @@
-# React + TypeScript + Vite
+# Axiom Studio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Лендинг венчурной студии [axiom-studio.ru](https://axiom-studio.ru/). Сайт на Vite и React, тексты на русском. Продакшен-сборка — статические HTML-файлы: каждый маршрут отдаётся без выполнения JavaScript, затем приложение гидрируется.
 
-Currently, two official plugins are available:
+## Команды
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev      # локальная разработка, http://localhost:5173
+npm run build    # проверка типов, сборка и пререндер в dist/
+npm run preview  # просмотр dist/
+npm run lint
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+В режиме разработки Vite отдаёт одну оболочку на все пути, страницу рисует клиентский JavaScript. В `dist/` после сборки у каждого маршрута свой `index.html` с готовым текстом, `<title>`, description, canonical и Open Graph.
 
-## Static hosting
+## Как устроен пререндер
 
-`/privacy` is a client-side route in the same build. Vite dev and `vite preview` return `index.html` for that path, so a refresh works there. A static host must do the same, otherwise opening or refreshing `/privacy` responds with 404.
+Сборка идёт в три шага:
 
-For nginx:
+1. `vite build` собирает клиентский бандл в `dist/`.
+2. `vite build --ssr src/entry-server.tsx` собирает серверный рендер во временный каталог `dist/server`.
+3. `node scripts/prerender.mjs` вызывает `renderToString` для каждого маршрута, подставляет разметку и мета-теги в клиентский `index.html` и раскладывает файлы по папкам. Каталог `dist/server` после этого удаляется.
+
+На выходе обычная статика:
+
+- `/` → `dist/index.html`
+- `/privacy` → `dist/privacy/index.html`
+- остальные маршруты → `dist/<slug>/index.html`
+
+Гидрирование (`hydrateRoot`) подхватывает уже нарисованный HTML. Анимации главной остаются на клиенте: до загрузки скрипта блоки с классом `reveal` не прячутся, а после гидрации `useScrollReveal` включает появление при прокрутке в том же кадре.
+
+## Деплой
+
+Корень сайта — содержимое `dist/`. Подойдёт nginx без отдельного Node-процесса:
 
 ```nginx
-location / {
-    try_files $uri $uri/ /index.html;
+server {
+    listen 80;
+    server_name axiom-studio.ru;
+    root /var/www/axiom-studio;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
 }
 ```
+
+`try_files` сначала ищет файл, затем каталог с `index.html`. Поэтому `/privacy` и `/privacy/` открывают `privacy/index.html`, а не главную. Неизвестный путь по-прежнему падает на `index.html` главной.
+
+Рядом лежат `robots.txt` и `sitemap.xml`. В `robots.txt` открыт весь сайт и указана карта:
+
+```
+User-agent: *
+Allow: /
+
+Sitemap: https://axiom-studio.ru/sitemap.xml
+```
+
+Карта собирается при пререндере из того же списка маршрутов и перезаписывает копию из `public/`. Яндекс.Метрика подключается только если в `src/data/analytics.ts` задан `YANDEX_METRIKA_ID`. Пустой идентификатор в сниппет не подставляется.
+
+## Маршруты
+
+- `/` — главная
+- `/privacy` — политика обработки персональных данных
+- `/razrabotka-startapa-za-dolyu`
+- `/mvp-za-procent-ot-vyruchki`
+- `/razrabotka-telegram-mini-app`
+- `/tehnicheskiy-partner-dlya-startapa`
+- `/kak-zapustit-startap-bez-deneg-na-razrabotku`
+
+Кластеры запросов для сверки в Вордстате — в `SEO_KEYWORDS.md`. Частотность в репозитории не указана.

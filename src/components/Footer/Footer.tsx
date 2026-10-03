@@ -9,14 +9,15 @@ import {
   TELEGRAM_URL,
   TELEGRAM_USERNAME,
 } from '../../data/contacts';
+import { LANDINGS } from '../../data/landings';
 import { PRIVACY_PATH, PRIVACY_TITLE } from '../../data/privacy';
-import { isPrivacyPath } from '../../router/path';
+import { currentPath } from '../../router/path';
 import { scrollToSection } from '../../utils/scrollToSection';
 import styles from './Footer.module.scss';
 
 export function Footer() {
   const year = new Date().getFullYear();
-  const onHome = !isPrivacyPath();
+  const onHome = currentPath() === '/';
 
   return (
     <footer className={styles.footer}>
@@ -83,6 +84,14 @@ export function Footer() {
           </p>
           <a href={PRIVACY_PATH}>{PRIVACY_TITLE}</a>
         </div>
+
+        <nav className={styles.materials} aria-label="Материалы">
+          {LANDINGS.map((page) => (
+            <a key={page.path} href={page.path}>
+              {page.footerLabel}
+            </a>
+          ))}
+        </nav>
       </Container>
     </footer>
   );
