@@ -19,8 +19,13 @@ const fadeUp = {
 
 const titleWords = HERO.title.split(' ');
 
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
 export function Hero() {
   const [offscreen, setOffscreen] = useState(false);
+  const [reduced] = useState(prefersReducedMotion);
 
   useEffect(() => {
     const hero = document.getElementById('top');
@@ -46,11 +51,13 @@ export function Hero() {
           <m.h1
             className={styles.title}
             aria-label={HERO.title}
-            initial="hidden"
+            initial={reduced ? false : 'hidden'}
             animate="visible"
             variants={{
               hidden: {},
-              visible: { transition: { staggerChildren: 0.045, delayChildren: 0.08 } },
+              visible: {
+                transition: { staggerChildren: 0.045, delayChildren: reduced ? 0 : 0.08 },
+              },
             }}
           >
             {titleWords.map((word, index) => (
@@ -67,18 +74,18 @@ export function Hero() {
 
           <m.p
             className={styles.description}
-            initial={{ opacity: 0, y: 14 }}
+            initial={reduced ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.42, ease: EASE }}
+            transition={{ duration: 0.6, delay: reduced ? 0 : 0.42, ease: EASE }}
           >
             {HERO.description}
           </m.p>
 
           <m.div
             className={styles.actions}
-            initial={{ opacity: 0, y: 14 }}
+            initial={reduced ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.54, ease: EASE }}
+            transition={{ duration: 0.6, delay: reduced ? 0 : 0.54, ease: EASE }}
           >
             <Magnetic className={styles.magnetic}>
               <ApplyButton source="hero">{HERO.primaryCta}</ApplyButton>
@@ -99,11 +106,11 @@ export function Hero() {
 
           <m.ul
             className={styles.facts}
-            initial="hidden"
+            initial={reduced ? false : 'hidden'}
             animate="visible"
             variants={{
               hidden: {},
-              visible: { transition: { staggerChildren: 0.07, delayChildren: 0.66 } },
+              visible: { transition: { staggerChildren: 0.07, delayChildren: reduced ? 0 : 0.66 } },
             }}
           >
             {HERO.facts.map((fact) => (
@@ -117,9 +124,9 @@ export function Hero() {
         <m.div
           className={styles.visual}
           aria-hidden="true"
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduced ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.28, ease: EASE }}
+          transition={{ duration: 0.8, delay: reduced ? 0 : 0.28, ease: EASE }}
         >
           <div className={styles.splitCard}>
             <div className={styles.splitHead}>

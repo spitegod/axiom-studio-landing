@@ -435,4 +435,15 @@
   .orb {
     animation: none;
   }
+
+  // Motion всё равно ставит opacity: 0 на первый кадр. !important перекрывает
+  // inline-стиль, чтобы текст не пропадал при reduced motion.
+  .word,
+  .description,
+  .actions,
+  .facts,
+  .visual {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
