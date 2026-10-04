@@ -8,7 +8,7 @@ import {
 import { canonicalUrl } from '../../seo/site';
 import { STUDIO_NAME } from '../../data/contacts';
 import { SITE_URL } from '../../data/privacy';
-import { ApplyButton, Container } from '../ui';
+import { ApplyButton, Container, ManagerButton } from '../ui';
 import { RichText } from './RichText';
 import styles from './LandingPage.module.scss';
 
@@ -88,7 +88,10 @@ export function LandingPage({ page }: { page: LandingPageData }) {
               <RichText text={page.lead} className={styles.textLink} />
             </p>
             <div className={styles.actions}>
-              <ApplyButton source="final">{APPLY_LABEL}</ApplyButton>
+              <div className={styles.actionRow}>
+                <ApplyButton source="final">{APPLY_LABEL}</ApplyButton>
+                <ManagerButton variant="secondary" />
+              </div>
               <p className={styles.hint}>{APPLY_HINT}</p>
             </div>
           </header>
@@ -160,7 +163,10 @@ export function LandingPage({ page }: { page: LandingPageData }) {
                 {page.ctaTitle}
               </h2>
               <p className={styles.panelText}>{page.ctaText}</p>
-              <ApplyButton source="final">{APPLY_LABEL}</ApplyButton>
+              <div className={styles.actionRow}>
+                <ApplyButton source="final">{APPLY_LABEL}</ApplyButton>
+                <ManagerButton variant="secondary-on-dark" />
+              </div>
               <p className={styles.panelHint}>{APPLY_HINT}</p>
             </div>
           </div>

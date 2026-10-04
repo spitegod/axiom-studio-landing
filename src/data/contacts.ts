@@ -5,6 +5,9 @@ export const TELEGRAM_USERNAME = 'mgr_axiom_studio';
 /** Личный чат менеджера. */
 export const TELEGRAM_URL = `https://t.me/${TELEGRAM_USERNAME}`;
 
+/** Подпись кнопки, которая открывает личный чат менеджера. */
+export const MANAGER_LABEL = 'Связаться с менеджером';
+
 export const STUDIO_EMAIL = 'axiom-studio@mail.ru';
 
 export const STUDIO_NAME = 'Axiom Studio';
@@ -30,7 +33,7 @@ export const CHANNEL_URL: string | null = 'https://t.me/axioma_community';
  * Сейчас кнопка открывает личный чат, а не форму.
  */
 export const APPLY_HINT =
-  'Кнопка откроет чат в Telegram. Коротко напишите об идее и о том, чем вы сильны в рынке.';
+  '«Подать заявку» откроет чат в Telegram. Коротко напишите об идее и о том, чем вы сильны в рынке.';
 
 export type ApplySource = 'header' | 'hero' | 'final';
 
