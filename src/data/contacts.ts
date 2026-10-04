@@ -12,12 +12,14 @@ export const STUDIO_NAME = 'Axiom Studio';
 export const STUDIO_TAGLINE =
   'Строим стартапы за долю: продукт, запуск и первые клиенты.';
 
+/** Бот студии: кнопка открывает его главное мини-приложение с анкетой. */
+export const BOT_USERNAME = 'axiom_studio_bot';
+
 /**
- * TODO: подставить ссылку на Telegram mini app с анкетой, когда она будет известна.
- * Ожидаемый формат: https://t.me/<bot>/<app>
- * Пока все кнопки «Подать заявку» ведут в личный чат @mgr_axiom_studio.
+ * Все кнопки «Подать заявку» открывают мини-приложение с анкетой.
+ * ?startapp= открывает Main Mini App бота и передаёт метку источника.
  */
-export const APPLY_URL = TELEGRAM_URL;
+export const APPLY_URL = `https://t.me/${BOT_USERNAME}?startapp=site`;
 
 /**
  * Публичный Telegram-канал студии.
@@ -25,12 +27,8 @@ export const APPLY_URL = TELEGRAM_URL;
  */
 export const CHANNEL_URL: string | null = 'https://t.me/axioma_community';
 
-/**
- * TODO: обновить текст, когда APPLY_URL станет ссылкой на mini app с анкетой.
- * Сейчас кнопка открывает личный чат, а не форму.
- */
 export const APPLY_HINT =
-  'Кнопка откроет чат в Telegram. Коротко напишите об идее и о том, чем вы сильны в рынке.';
+  'Кнопка откроет короткую анкету в Telegram: четыре шага, меньше минуты.';
 
 export type ApplySource = 'header' | 'hero' | 'final';
 
