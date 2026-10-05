@@ -9,6 +9,7 @@ export const METRIKA_GOALS = {
   applyHeader: 'apply_header',
   applyHero: 'apply_hero',
   applyFinal: 'apply_final',
+  contactManager: 'contact_manager',
 } as const;
 
 const TAG_SRC = 'https://mc.yandex.ru/metrika/tag.js';

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowDown, Handshake } from '@phosphor-icons/react';
 import { m } from '../../motion';
-import { ApplyButton, Button, Container, Magnetic } from '../ui';
+import { ApplyButton, Button, Container, Magnetic, ManagerButton } from '../ui';
 import { SECTION_IDS } from '../../data/content';
 import { HERO, HERO_VISUAL } from '../../data/hero';
 import { EASE } from '../../motion/ease';
@@ -91,6 +91,7 @@ export function Hero() {
             <Magnetic className={styles.magnetic}>
               <ApplyButton source="hero">{HERO.primaryCta}</ApplyButton>
             </Magnetic>
+            <ManagerButton variant="secondary-on-dark" />
             <Button
               href={`#${SECTION_IDS.partnership}`}
               variant="secondary-on-dark"

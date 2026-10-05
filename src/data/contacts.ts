@@ -5,6 +5,9 @@ export const TELEGRAM_USERNAME = 'mgr_axiom_studio';
 /** Личный чат менеджера. */
 export const TELEGRAM_URL = `https://t.me/${TELEGRAM_USERNAME}`;
 
+/** Подпись кнопки, которая открывает личный чат менеджера. */
+export const MANAGER_LABEL = 'Связаться с менеджером';
+
 export const STUDIO_EMAIL = 'axiom-studio@mail.ru';
 
 export const STUDIO_NAME = 'Axiom Studio';
@@ -28,7 +31,7 @@ export const APPLY_URL = `https://t.me/${BOT_USERNAME}?startapp=site`;
 export const CHANNEL_URL: string | null = 'https://t.me/axioma_community';
 
 export const APPLY_HINT =
-  'Кнопка откроет короткую анкету в Telegram: четыре шага, меньше минуты.';
+  '«Подать заявку» откроет короткую анкету в Telegram: четыре шага, меньше минуты.';
 
 export type ApplySource = 'header' | 'hero' | 'final';
 
