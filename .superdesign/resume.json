@@ -80,15 +80,15 @@
         },
         "d248ca7d-c6c3-4737-b53e-9e0b8a9a5939": {
           "title": "Axiom Studio - Cinematic Intro & Enhanced Motion",
-          "visualDirection": "centered logo intro then homepage with magnetic/hover/scroll",
+          "visualDirection": "stronger 2–3s iridescent navy/accent wash + logo pulse rings, then homepage",
           "parentDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
-          "currentVersion": 1
+          "currentVersion": 2
         },
         "bc1b028a-f85e-4bb6-9d56-c3bb1c3ecd5e": {
           "title": "Axiom Studio Landing Page with Intro",
-          "visualDirection": "founder/studio split-wipe intro then homepage with scroll-scrub process",
+          "visualDirection": "stronger split wipe with iridescent panels, pulsing seam, logo pulse",
           "parentDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
-          "currentVersion": 1
+          "currentVersion": 2
         }
       },
       "updatedAt": "2026-11-02T00:45:00.000Z"
