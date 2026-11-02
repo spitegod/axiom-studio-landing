@@ -41,6 +41,11 @@ body {
   overflow-x: hidden;
 }
 
+html.intro-active,
+html.intro-active body {
+  overflow: hidden;
+}
+
 img,
 svg {
   display: block;
