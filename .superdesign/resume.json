@@ -7,7 +7,9 @@
       "baselineDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
       "activeDraftId": "d248ca7d-c6c3-4737-b53e-9e0b8a9a5939",
       "designSystemPath": ".superdesign/design-system.md",
-      "referenceIds": ["src-assets-axiom-logo.png"],
+      "referenceIds": [
+        "src-assets-axiom-logo.png"
+      ],
       "brandAssets": {
         "logo": {
           "assetKey": "src-assets-axiom-logo.png",
@@ -80,9 +82,9 @@
         },
         "d248ca7d-c6c3-4737-b53e-9e0b8a9a5939": {
           "title": "Axiom Studio - Cinematic Intro & Enhanced Motion",
-          "visualDirection": "logo-centered splash: Homemade Apple centered cursive pen stroke (disappearing ink)",
+          "visualDirection": "logo-centered splash: Homemade Apple 3x-logo thick cursive; 0.3s disappearing ink finishes before overlay",
           "parentDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
-          "currentVersion": 6
+          "currentVersion": 7
         },
         "bc1b028a-f85e-4bb6-9d56-c3bb1c3ecd5e": {
           "title": "Axiom Studio Landing Page with Intro",
@@ -91,7 +93,7 @@
           "currentVersion": 3
         }
       },
-      "updatedAt": "2026-11-02T01:05:00.000Z"
+      "updatedAt": "2026-11-02T01:12:00.000Z"
     }
   }
 }
