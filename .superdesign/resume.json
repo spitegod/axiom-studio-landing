@@ -82,9 +82,9 @@
         },
         "d248ca7d-c6c3-4737-b53e-9e0b8a9a5939": {
           "title": "Axiom Studio - Cinematic Intro & Enhanced Motion",
-          "visualDirection": "logo-centered splash lockup Axiom Studio / \u0412\u0435\u043d\u0447\u0443\u0440\u043d\u0430\u044f \u0441\u0442\u0443\u0434\u0438\u044f; premium full home; no ink/confetti",
+          "visualDirection": "no founder-fit; FAQ trimmed; dense scroll motion (stagger/parallax/counters/rail); lockup Axiom Studio / \u0412\u0435\u043d\u0447\u0443\u0440\u043d\u0430\u044f \u0441\u0442\u0443\u0434\u0438\u044f",
           "parentDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
-          "currentVersion": 9
+          "currentVersion": 10
         },
         "bc1b028a-f85e-4bb6-9d56-c3bb1c3ecd5e": {
           "title": "Axiom Studio Landing Page with Intro",
@@ -93,7 +93,7 @@
           "currentVersion": 3
         }
       },
-      "updatedAt": "2026-11-02T01:22:00.000Z"
+      "updatedAt": "2026-11-02T01:28:00.000Z"
     }
   }
 }
