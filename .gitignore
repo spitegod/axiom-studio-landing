@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .vercel
 .env*
+
+# Superdesign local component templates
+.superdesign/tmp/

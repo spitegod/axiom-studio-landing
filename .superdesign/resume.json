@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "targets": {
+    "/": {
+      "targetKind": "existing-ui",
+      "projectId": "ea6420e3-bc60-46c0-a4e0-d0409aa60857",
+      "baselineDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
+      "activeDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
+      "designSystemPath": ".superdesign/design-system.md",
+      "referenceIds": ["src-assets-axiom-logo.png"],
+      "brandAssets": {
+        "logo": {
+          "assetKey": "src-assets-axiom-logo.png",
+          "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/ea6420e3-bc60-46c0-a4e0-d0409aa60857/brand-assets/src-assets-axiom-logo.png/axiom-logo.png",
+          "sourcePath": "src/assets/axiom-logo.png"
+        }
+      },
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        ".superdesign/init/theme.md:1:110",
+        "src/App.tsx",
+        "src/components/Header/Header.tsx",
+        "src/components/Header/Header.module.scss",
+        "src/components/Footer/Footer.tsx",
+        "src/components/Footer/Footer.module.scss",
+        "src/components/Hero/Hero.tsx",
+        "src/components/Hero/Hero.module.scss",
+        "src/components/ui/Button/Button.tsx",
+        "src/components/ui/Button/Button.module.scss",
+        "src/components/ui/ApplyButton/ApplyButton.tsx",
+        "src/components/ui/ManagerButton/ManagerButton.tsx",
+        "src/data/hero.ts",
+        "src/data/partnership.ts",
+        "src/data/exchange.ts",
+        "src/data/process.ts",
+        "src/data/founderFit.ts",
+        "src/data/faq.ts",
+        "src/data/projects.ts"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "7e3f6d80232f3fe67a5c21a1254e8d04e218618a7d203cbfec90fc93d4cc8b70",
+        ".superdesign/init/theme.md": "840a5a5283cbe6c9114d5ea90192cfa6bb29fff381dfeaafafff0f661ac353b9",
+        "src/App.tsx": "31f9e443de00a8f499502f2a744a0bce3c35e2d54f33421eb2827050de367134",
+        "src/components/Header/Header.tsx": "3562b122af0eaa29f5a273284d5cbc7f714869f3b3e098d538aa63f558e96992",
+        "src/components/Header/Header.module.scss": "95a821b1d0aa73b1228c726616916018171bf1ae004ef307fb350b18a8d3657d",
+        "src/components/Footer/Footer.tsx": "5937d3dedd7748e8712f2464d3d548de3bbd0d3230059616ed525269e9fac85a",
+        "src/components/Footer/Footer.module.scss": "7a293caa3046d4b73bf986f0dfdee2828f5148c2712243c587d30b7ca1bf2723",
+        "src/components/Hero/Hero.tsx": "60dc477bde222381ede1976abf40e7fed984ebcf0c7295c1b95efb4ae92cccc0",
+        "src/components/Hero/Hero.module.scss": "b780ca5591e96018bfccc22f9c4f14def74ad5402fd478e5bbc76c3a8d215e6d",
+        "src/components/ui/Button/Button.tsx": "7d0ec62a96b5a8cae32be882760ba2c1f318189a3267172e0f0cbda3065c3c11",
+        "src/components/ui/Button/Button.module.scss": "bdd034a25f9f983e7948d10b7bf4d941b8dc1def781a8265b5e372b4d20018cd",
+        "src/components/ui/ApplyButton/ApplyButton.tsx": "51824aada93400cc50531a5e784c9f604fcb81cb82ca68ad53fba033fc5fab6d",
+        "src/components/ui/ManagerButton/ManagerButton.tsx": "993f7c592665812388ee654c3caf2ba94d1607946938bfec0e4d323e8a8dd54d",
+        "src/data/hero.ts": "bfa80e94f32ff37ab896c58323849c65c7fd02b77ab9dc5d46c862d9fff359fb",
+        "src/data/partnership.ts": "6d378f01a396f83c025d2d0df4bdd2d4096dfa36cc07360792d9f816e07b1461",
+        "src/data/exchange.ts": "722719b3e1bf5f576fa5b1c915178a06e56766d827814f4433dbf3422b7ff725",
+        "src/data/process.ts": "918f61bdbf990a0c10aee44c5a0c4d57ef9f870b8db2154839001ee472ce728e",
+        "src/data/founderFit.ts": "cb926c9376fbc787aedf2c28588542a5cdba18bcf4ac8212e449967f7aa65be6",
+        "src/data/faq.ts": "f7836b7edb376ee3a8b778a2dfcfa033950ac062b504d8f81ebe762087ff2914",
+        "src/data/projects.ts": "6eb4c2717279819f162e9bbcf77b1c95e78fcc3651390c86047046e5acb2a191"
+      },
+      "components": [
+        {
+          "name": "Header",
+          "id": "4332c5c6-b1df-4b28-830a-3c58882798fd",
+          "sourcePath": "src/components/Header/Header.tsx",
+          "logoAssetKey": "src-assets-axiom-logo.png"
+        },
+        {
+          "name": "Footer",
+          "id": "3d0cebf3-4619-4069-9fc5-9e0c73e68262",
+          "sourcePath": "src/components/Footer/Footer.tsx"
+        }
+      ],
+      "drafts": {
+        "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1": {
+          "title": "Current homepage",
+          "visualDirection": "pixel-perfect reproduction of live home",
+          "currentVersion": 1
+        },
+        "d248ca7d-c6c3-4737-b53e-9e0b8a9a5939": {
+          "title": "Axiom Studio - Cinematic Intro & Enhanced Motion",
+          "visualDirection": "centered logo intro then homepage with magnetic/hover/scroll",
+          "parentDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
+          "currentVersion": 1
+        },
+        "bc1b028a-f85e-4bb6-9d56-c3bb1c3ecd5e": {
+          "title": "Axiom Studio Landing Page with Intro",
+          "visualDirection": "founder/studio split-wipe intro then homepage with scroll-scrub process",
+          "parentDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
+          "currentVersion": 1
+        }
+      },
+      "updatedAt": "2026-11-02T00:40:00.000Z"
+    }
+  }
+}
