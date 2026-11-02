@@ -1,0 +1,129 @@
+@use '../../styles/mixins';
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(13, 90, 99, 0.85) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 70% at 85% 80%, rgba(0, 237, 100, 0.28) 0%, transparent 50%),
+    linear-gradient(125deg, #00232f 0%, #073a4a 42%, #0d5a63 68%, #00232f 100%);
+  background-size: 140% 140%;
+  animation: intro-wash 2.6s ease-in-out both;
+  transition:
+    opacity 0.7s var(--ease-standard),
+    visibility 0.7s var(--ease-standard);
+}
+
+.overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.wash {
+  position: absolute;
+  inset: -20%;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    rgba(0, 237, 100, 0.18),
+    rgba(7, 58, 74, 0.4),
+    rgba(195, 240, 210, 0.12),
+    rgba(0, 181, 69, 0.2),
+    rgba(0, 35, 47, 0.5),
+    rgba(0, 237, 100, 0.18)
+  );
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  animation: intro-spin 2.8s linear both;
+  pointer-events: none;
+}
+
+.shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(195, 240, 210, 0.22) 48%,
+    transparent 66%
+  );
+  transform: translateX(-120%);
+  animation: intro-shimmer 2.2s 0.15s var(--ease-standard) both;
+  pointer-events: none;
+}
+
+.logo {
+  position: relative;
+  z-index: 2;
+  width: 148px;
+  height: auto;
+  opacity: 0;
+  transform: scale(0.72);
+  filter: drop-shadow(0 0 36px rgba(0, 237, 100, 0.55));
+  animation: intro-logo-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.12s forwards;
+}
+
+@keyframes intro-wash {
+  0% {
+    background-position: 0% 40%;
+  }
+
+  100% {
+    background-position: 80% 60%;
+  }
+}
+
+@keyframes intro-spin {
+  from {
+    transform: rotate(0deg) scale(1.05);
+  }
+
+  to {
+    transform: rotate(28deg) scale(1.2);
+  }
+}
+
+@keyframes intro-shimmer {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes intro-logo-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@include mixins.until-laptop {
+  .logo {
+    width: 124px;
+  }
+}
+
+@include mixins.until-tablet {
+  .logo {
+    width: 104px;
+  }
+}
+
+@include mixins.reduced-motion {
+  .overlay,
+  .wash,
+  .shimmer,
+  .logo {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  .overlay.hidden {
+    opacity: 0;
+  }
+}

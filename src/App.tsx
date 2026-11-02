@@ -1,5 +1,6 @@
 import { LazyMotion, MotionConfig, domAnimation } from './motion';
 import { Header } from './components/Header/Header';
+import { Intro } from './components/Intro/Intro';
 import { Hero } from './components/Hero/Hero';
 import { Partnership } from './components/Partnership/Partnership';
 import { Exchange } from './components/Exchange/Exchange';
@@ -45,6 +46,7 @@ function App() {
   return (
     <MotionConfig reducedMotion="user">
       <LazyMotion features={domAnimation} strict>
+        {path === '/' ? <Intro /> : null}
         <Header />
         <main>
           {path === PRIVACY_PATH ? (
