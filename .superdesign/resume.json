@@ -82,9 +82,9 @@
         },
         "d248ca7d-c6c3-4737-b53e-9e0b8a9a5939": {
           "title": "Axiom Studio - Cinematic Intro & Enhanced Motion",
-          "visualDirection": "Cormorant lockup; no hero founder column; v10 motion/copy otherwise",
+          "visualDirection": "logo-only intro (larger mark); no lockup captions; v11 motion/copy otherwise",
           "parentDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
-          "currentVersion": 11
+          "currentVersion": 12
         },
         "bc1b028a-f85e-4bb6-9d56-c3bb1c3ecd5e": {
           "title": "Axiom Studio Landing Page with Intro",
@@ -93,7 +93,7 @@
           "currentVersion": 3
         }
       },
-      "updatedAt": "2026-11-02T01:35:00.000Z"
+      "updatedAt": "2026-11-02T01:39:00.000Z"
     }
   }
 }
