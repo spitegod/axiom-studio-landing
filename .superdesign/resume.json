@@ -5,7 +5,7 @@
       "targetKind": "existing-ui",
       "projectId": "ea6420e3-bc60-46c0-a4e0-d0409aa60857",
       "baselineDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
-      "activeDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
+      "activeDraftId": "d248ca7d-c6c3-4737-b53e-9e0b8a9a5939",
       "designSystemPath": ".superdesign/design-system.md",
       "referenceIds": ["src-assets-axiom-logo.png"],
       "brandAssets": {
@@ -80,18 +80,18 @@
         },
         "d248ca7d-c6c3-4737-b53e-9e0b8a9a5939": {
           "title": "Axiom Studio - Cinematic Intro & Enhanced Motion",
-          "visualDirection": "stronger 2–3s iridescent navy/accent wash + logo pulse rings, then homepage",
+          "visualDirection": "logo-centered splash: wash/sheen + AXIOM STUDIO scan-line (no pulse), dissolve to hero",
           "parentDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
-          "currentVersion": 2
+          "currentVersion": 3
         },
         "bc1b028a-f85e-4bb6-9d56-c3bb1c3ecd5e": {
           "title": "Axiom Studio Landing Page with Intro",
-          "visualDirection": "stronger split wipe with iridescent panels, pulsing seam, logo pulse",
+          "visualDirection": "aligned to cinematic: no founder splash copy, AXIOM STUDIO scan-line",
           "parentDraftId": "4b4aecc2-e3e3-4720-8d53-c6d21aeaa4c1",
-          "currentVersion": 2
+          "currentVersion": 3
         }
       },
-      "updatedAt": "2026-11-02T00:45:00.000Z"
+      "updatedAt": "2026-11-02T00:55:00.000Z"
     }
   }
 }
