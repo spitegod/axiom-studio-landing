@@ -32,6 +32,26 @@ Do **not** invent a new palette, fonts, or button language.
 
 Logo: Axiom mark PNG + wordmark “Axiom Studio” (wordmark hidden below laptop). Never replace the mark with initials, emoji, invented SVG, or text alone.
 
+## Responsive (HARD CONSTRAINT)
+
+Every Superdesign draft and iteration must ship **explicit layouts for desktop, tablet, and mobile**. A desktop-only composition is incomplete.
+
+Breakpoints (match the repo mixins):
+
+- mobile: ≤767px
+- tablet: 768–1023px
+- laptop/desktop: ≥1024px (wide ≥1280px)
+
+Required on **intro splash, hero, and interactions** as well as later sections:
+
+- Intro: full-viewport on all widths; type, logo size, and any split panels stack or scale so nothing clips or overflows. Skip or shorten motion when `prefers-reduced-motion`.
+- Hero: single column on mobile; tablet may stay stacked or use a tighter two-row visual; two columns only from 1024px. CTA row wraps; magnetic pull is mouse-only (no touch jitter).
+- Header: wordmark hidden below laptop; nav scrolls horizontally; apply chip is icon-only until laptop.
+- Footer: stacked columns on mobile, row from tablet.
+- Cards, exchange columns, process steps, FAQ, final CTA: stack on small screens; no horizontal overflow.
+
+Do not treat a 1280px frame as the only deliverable. When iterating, restate these breakpoints in the prompt and keep the same palette.
+
 ## Motion
 
 Existing: Lenis smooth scroll; `.reveal` fade/slide 20px; hero word-stagger; magnetic pull on primary CTAs (mouse only, ±12/±8px); primary sheen sweep; header fade-in.
